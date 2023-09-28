@@ -1,0 +1,22 @@
+#define_port INSERT  0x8081fdac 0x8080c298 0x8081f418 0x8080e16c
+
+#define RES_CHAN_SYS 0x0 
+#define RES_CHAN_COURSE 0x1
+#define sITEM 0x6974656D
+
+asm(INSERT)
+{
+    li r4, RES_CHAN_COURSE
+
+    lis r12, sITEM@h
+    ori r12, r12, sITEM@l
+
+    lwz r11, 0x0(r5)
+
+    cmplw r11, r12
+    bne end
+
+    li r4, RES_CHAN_SYS
+
+    end:
+}
