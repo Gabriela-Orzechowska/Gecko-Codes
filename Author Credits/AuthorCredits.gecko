@@ -71,8 +71,6 @@ what:
     li r6, 0x0
     function_call r12, Page_insert
 
-    #Load
-    #Hud
     li r7, 0x0
     stb r7, 0x190(r17)
 
