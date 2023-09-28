@@ -1,0 +1,121 @@
+#define_port INJECT 0x808562d0 0x80834840 0x8085593c 0x80844690
+#define_port Page_initChildren  0x8060245c 0x805ddb7c 0x80601bd0 0x805f087c
+#define_port ControlGroup_create 0x805c2620 0x805b9c8c 0x805c1fa0 0x805b0684
+#define_port new 0x80229dcc 0x80229a48 0x80229cec 0x8022a140
+#define_port Page_insert 0x8060246c 0x805ddb8c 0x80601be0 0x805f088c
+#define_port LayoutUIControl_construct 0x8063d798 0x8060c378 0x8063ce04 0x8062bab0
+#define_port CtrlRaceWifiStartMessage_vtable 0x808d4110 0x808d5470 0x808d3260 0x808c25a8 //CHECK IT
+#define_port ControlLoader_construct 0x805c2c18 0x805ba284 0x805c2598 0x805b0c7c
+#define_port ControlLoader_load 0x805c2c60 0x805ba2cc 0x805c25e0 0x805b0cc4
+#define_port UI_Layout_findPaneByName 0x805e8368 0x805d1c7c 0x805e7c44 0x805d6504
+#define_port LayoutUIControl_setMessageAll 0x8063ddb4 0x8060c994 0x8063d420 0x8062c0cc
+#define_port s_TextBox_00 0x808aaa87 0x808aa3b7 0x808a9be7 0x80898ee7
+#define_port s_game_image 0x808aaa70 0x808aa3a0 0x808a9bd0 0x80898ed0
+
+#define LecodeCourseID 0x808ee450
+#define BmgOffset 0x1000
+#define elements 0x2
+#define brctrName "credits"
+
+asm(INJECT)
+{
+    .macro function_call register, address
+      lis \register, \address@h
+      ori \register, \register, \address@l
+      mtctr \register
+      bctrl
+    .endm
+
+    .macro load_address register, address
+      lis \register, \address@h
+      ori \register, \register, \address@l
+    .endm
+
+    stwu sp, -0x20(sp)
+    mflr r0
+    stw r0, 0x24 (sp)
+    li r0, 0x0
+    stw r31, 0x1c (sp)
+    mr r31, r3
+    stw r30, 0x18 (sp)
+    mr r30, r4
+
+    mr r5, r4
+    mr r4, r3
+    addi r3, r3, 0x24
+    addi r5, r5, elements
+
+    function_call r12, ControlGroup_create
+
+    bl code
+    .long 1
+    .string brctrName
+    code:
+    mflr r20
+    li r3, 0x1
+    stw r3, 0x0 (r20) 
+
+what:
+
+    li r3, 0x19c
+    function_call r12, new
+    mr r17, r3
+    function_call r12, LayoutUIControl_construct
+
+    load_address r11, CtrlRaceWifiStartMessage_vtable
+    stw r11, 0x0(r17)
+
+    mr r3, r31
+    mr r4, r30
+    mr r5, r17
+    li r6, 0x0
+    function_call r12, Page_insert
+
+    #Load
+    #Hud
+    li r7, 0x0
+    stb r7, 0x190(r17)
+
+    li r3, 0x28
+    function_call r12, new
+    mr r4, r17
+    function_call r12, ControlLoader_construct
+    
+    load_address r4, s_game_image
+    mr r5, r20
+    addi r5, r5, 0x4
+    mr r6, r5
+    li r7, 0x0
+    function_call r12, ControlLoader_load
+
+    addi r3, r17, 0xa8
+    load_address r4, s_TextBox_00
+    function_call r12, UI_Layout_findPaneByName
+    stw r3, 0x198(r17)
+
+    mr r3, r17
+    li r5, 0x0
+
+    load_address r12, LecodeCourseID
+    lwz r4, 0x0 (r12)
+    addi r4, r4, BmgOffset
+
+    function_call r12, LayoutUIControl_setMessageAll
+
+    lwz r19, 0x0(r20) #This looks dumb, however for some reason in modes other than TT this just doesnt want to initialize normally, doing it twice does
+    cmpwi r19, 0x1
+    bne end
+    li r19, 0x0
+    stw r19, 0x0(r20)
+    addi r30, r30, 0x1
+    b what
+
+    end:
+    lwz r0, 0x24 (sp)
+	mtlr r0
+    lwz r31, 0x1c (sp)
+    lwz r30, 0x18 (sp)
+    addi sp, sp, 0x20
+    
+    
+}
