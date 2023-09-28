@@ -110,7 +110,7 @@ what:
 
     end:
     lwz r0, 0x24 (sp)
-	mtlr r0
+    mtlr r0
     lwz r31, 0x1c (sp)
     lwz r30, 0x18 (sp)
     addi sp, sp, 0x20
