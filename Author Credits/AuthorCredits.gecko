@@ -12,6 +12,7 @@
 #define_port s_TextBox_00 0x808aaa87 0x808aa3b7 0x808a9be7 0x80898ee7
 #define_port s_game_image 0x808aaa70 0x808aa3a0 0x808a9bd0 0x80898ed0
 
+#define LecodeBase 0x808DD400
 #define LecodeCourseID 0x808ee450
 #define BmgOffset 0x1000
 #define elements 0x2
@@ -94,7 +95,10 @@ what:
     mr r3, r17
     li r5, 0x0
 
-    load_address r12, LecodeCourseID
+    load_address r12, LecodeBase
+    lwz r4, 0x50 (r12)
+    add r12, r12, r4
+    addi r12, r12, 0x40
     lwz r4, 0x0 (r12)
     addi r4, r4, BmgOffset
 
