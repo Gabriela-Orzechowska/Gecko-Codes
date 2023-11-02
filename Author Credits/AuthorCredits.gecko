@@ -14,7 +14,7 @@
 
 #define LecodeBase 0x808DD400
 #define LecodeCourseID 0x808ee450
-#define BmgOffset 0x1000
+#define BmgOffset 0x3000
 #define elements 0x2
 #define brctrName "credits"
 
