@@ -1,16 +1,16 @@
-#define_port INJECT 0x808562d0 0x80834840 0x8085593c 0x80844690
-#define_port Page_initChildren  0x8060245c 0x805ddb7c 0x80601bd0 0x805f087c
-#define_port ControlGroup_create 0x805c2620 0x805b9c8c 0x805c1fa0 0x805b0684
-#define_port new 0x80229dcc 0x80229a48 0x80229cec 0x8022a140
-#define_port Page_insert 0x8060246c 0x805ddb8c 0x80601be0 0x805f088c
-#define_port LayoutUIControl_construct 0x8063d798 0x8060c378 0x8063ce04 0x8062bab0
-#define_port CtrlRaceWifiStartMessage_vtable 0x808d4110 0x808d5470 0x808d3260 0x808c25a8 //CHECK IT
-#define_port ControlLoader_construct 0x805c2c18 0x805ba284 0x805c2598 0x805b0c7c
-#define_port ControlLoader_load 0x805c2c60 0x805ba2cc 0x805c25e0 0x805b0cc4
-#define_port UI_Layout_findPaneByName 0x805e8368 0x805d1c7c 0x805e7c44 0x805d6504
-#define_port LayoutUIControl_setMessageAll 0x8063ddb4 0x8060c994 0x8063d420 0x8062c0cc
-#define_port s_TextBox_00 0x808aaa87 0x808aa3b7 0x808a9be7 0x80898ee7
-#define_port s_game_image 0x808aaa70 0x808aa3a0 0x808a9bd0 0x80898ed0
+#define_port INJECT 0x808562d0
+#define_port Page_initChildren  0x8060245c
+#define_port ControlGroup_create 0x805c2620
+#define_port new 0x80229dcc
+#define_port Page_insert 0x8060246c
+#define_port LayoutUIControl_construct 0x8063d798
+#define_port CtrlRaceWifiStartMessage_vtable 0x808d4110
+#define_port ControlLoader_construct 0x805c2c18
+#define_port ControlLoader_load 0x805c2c60
+#define_port UI_Layout_findPaneByName 0x805e8368
+#define_port LayoutUIControl_setMessageAll 0x8063ddb4
+#define_port s_TextBox_00 0x808aaa87
+#define_port s_game_image 0x808aaa70
 
 #define LecodeBase 0x808DD400
 #define LecodeCourseID 0x808ee450
