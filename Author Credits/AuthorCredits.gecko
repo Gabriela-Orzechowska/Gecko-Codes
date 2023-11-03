@@ -13,7 +13,6 @@
 #define_port s_game_image 0x808aaa70
 
 #define LecodeBase 0x808DD400
-#define LecodeCourseID 0x808ee450
 #define BmgOffset 0x3000
 #define elements 0x2
 #define brctrName "credits"
@@ -96,12 +95,15 @@ what:
     li r5, 0x0
 
     load_address r12, LecodeBase
-    lwz r4, 0x50 (r12)
+    lwz r4, 0x18 (r12)
+    add r5, r12, r4
+    lwz r4, 0x10 (r5)
     add r12, r12, r4
     addi r12, r12, 0x40
     lwz r4, 0x0 (r12)
     addi r4, r4, BmgOffset
 
+    li r5, 0x0
     function_call r12, LayoutUIControl_setMessageAll
 
     lwz r19, 0x0(r20) #This looks dumb, however for some reason in modes other than TT this just doesnt want to initialize normally, doing it twice does
