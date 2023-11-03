@@ -100,7 +100,7 @@ what:
     lwz r4, 0x10 (r5)
     add r12, r12, r4
     addi r12, r12, 0x40
-    lwz r4, 0x0 (r12)
+    lwz r4, 0x4 (r12)
     addi r4, r4, BmgOffset
 
     li r5, 0x0
