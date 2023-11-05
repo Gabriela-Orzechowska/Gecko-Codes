@@ -1,4 +1,5 @@
 # Replace XXXX with BMG offset
+# Credits to Melg for his SIP implementation
 
 PAL:
 C28562D0 00000034
