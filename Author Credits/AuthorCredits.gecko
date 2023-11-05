@@ -95,12 +95,12 @@ what:
     li r5, 0x0
 
     load_address r12, LecodeBase
-    lwz r4, 0x18 (r12)
-    add r5, r12, r4
+    lwz r6, 0x18 (r12)
+    add r5, r12, r6
     lwz r4, 0x10 (r5)
     add r12, r12, r4
-    addi r12, r12, 0x40
-    lwz r4, 0x4 (r12)
+    add r12, r12, r6
+    lwz r4, 0x0 (r12)
     addi r4, r4, BmgOffset
 
     li r5, 0x0
